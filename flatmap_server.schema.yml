@@ -1,0 +1,40 @@
+type: object
+properties:
+  Upgrading:
+    type: object
+    properties:
+      Commands:
+        type: string
+  Servers:
+    type: array
+    items:
+      type: object
+      properties:
+        Id:
+          type: string
+        Configuration:
+          type: object
+          properties:
+            Comment:
+              type: string
+            Endpoint:
+              type: string
+            Port:
+              type: number
+            Tmux id:
+              type: string
+            Directory:
+              type: string
+            Release tag:
+              type: string
+            Integrated viewer:
+              type: string
+            Start up:
+              type: string
+            Map generation:
+              type: string
+            Upgrading:
+              type: object
+              properties:
+                Commands:
+                  type: string

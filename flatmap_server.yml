@@ -1,0 +1,74 @@
+--- # Flatmap servers
+Upgrading: &upgrade
+  Commands: |
+    # First stop server with ^C
+    $ git fetch -t
+    $ git checkout NEW-TAG
+    $ poetry update
+    $ poetry run mapviewer --bind 0.0.0.0:PORT
+
+Servers:
+  - Id: Development version 1
+    Configuration: &devel_v1
+      Comment: Promoted to production version 2
+      Endpoint: https://mapcore-demo.org/devel/flatmap/v1/
+      Port: 4330
+      Tmux id: prod-flatmaps-v2
+      Directory: /home/ubuntu/services/prod-flatmap-server-v2
+      Release tag: v0.10.12
+      Integrated viewer: v2.1.0b16
+      Start up: |
+        $ export BEARER_TOKENS=make_devel_map
+        $ export SCICRUNCH_API_KEY=xBOrIfnZTvJQtobGo8XHRvThdMYGTxtf
+        $ poetry run mapviewer --bind 0.0.0.0:4330
+      Map generation: |
+        $ curl -H "Content-Type: application/json"  \
+          -H "Authorization: Bearer make_devel_map"  \
+          -X POST \
+          -d '{"source": “PATH_TO_MANIFEST”}'  \
+          https://mapcore-demo.org/devel/flatmap/v1/make/map
+      Upgrading: *upgrade
+
+  - Id: Development version 3
+    Configuration:
+      Endpoint: https://mapcore-demo.org/devel/flatmap/v3/
+      Port: 4332
+      Tmux id: dev-flatmaps-v3
+      Directory: /home/ubuntu/services/dev-flatmap-server-v3
+      Release tag: v0.10.12
+      Integrated viewer: v2.1.0b16
+      Start up: |
+        $ export BEARER_TOKENS=make_devel_map
+        $ export SCICRUNCH_API_KEY=xBOrIfnZTvJQtobGo8XHRvThdMYGTxtf
+        $ poetry run mapviewer --bind 0.0.0.0:4332
+      Map generation: |
+        $ curl -H "Content-Type: application/json"  \
+          -H "Authorization: Bearer make_devel_map"  \
+          -X POST \
+          -d '{"source": “PATH_TO_MANIFEST”}'  \
+          https://mapcore-demo.org/devel/flatmap/v3/make/map
+      Upgrading: *upgrade
+
+  - Id: Staging
+    Configuration:
+      Endpoint: https://mapcore-demo.org/staging/flatmap/v1/
+      Port: 4331
+      Tmux id: staging-flatmap-server
+      Directory: /home/ubuntu/services/staging-flatmap-server
+      Release tag: v0.9.5
+      Start up: |
+        $ pipenv run python src/server.py --port 4331 --map-dir ~/flatmap-server/staging/
+
+  - Id: Production version 2
+    Configuration:
+      <<: *devel_v1
+      Comment: Promoted from development version 1
+
+  - Id: Production version 1
+    Configuration:
+      Endpoint: https://mapcore-demo.org/flatmaps/
+      Port: 4329
+      Tmux id: flatmaps
+      Directory: /home/ubuntu/flatmap-server
+      Release tag: v0.9.4
+      Start up: $ pipenv run python src/server.py
