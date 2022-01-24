@@ -17,6 +17,8 @@ properties:
           properties:
             Comment:
               type: string
+            Used by:
+              type: string
             Endpoint:
               type: string
             Port:

@@ -11,6 +11,7 @@ Servers:
   - Id: Development version 1
     Configuration: &devel_v1
       Comment: Promoted to production version 2
+      Used by: https://mapcore-demo.org/staging/sparc-app/maps/
       Endpoint: https://mapcore-demo.org/devel/flatmap/v1/
       Port: 4330
       Tmux id: prod-flatmaps-v2
@@ -31,6 +32,7 @@ Servers:
 
   - Id: Development version 3
     Configuration:
+      Used by: Development
       Endpoint: https://mapcore-demo.org/devel/flatmap/v3/
       Port: 4332
       Tmux id: dev-flatmaps-v3
@@ -63,9 +65,11 @@ Servers:
     Configuration:
       <<: *devel_v1
       Comment: Promoted from development version 1
+      Used by: https://sparc.science/maps
 
   - Id: Production version 1
     Configuration:
+      Used by: Legacy demo apps
       Endpoint: https://mapcore-demo.org/flatmaps/
       Port: 4329
       Tmux id: flatmaps
