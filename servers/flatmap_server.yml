@@ -60,6 +60,23 @@ Servers:
       Release tag: v0.9.5
       Start up: |
         $ pipenv run python src/server.py --port 4331 --map-dir ~/flatmap-server/staging/
+  - Id: fCCB
+    Configuration:
+      Comment: fCCB staging site
+      Used by:  https://mapcore-demo.org/staging/flatmap-update-sparc-app/
+      Endpoint: https://mapcore-demo.org/fccb/flatmap/
+      Viewer: https://mapcore-demo.org/fccb/flatmap/viewer/
+      Port: 4333
+      Tmux id: fccb-flatmap-server
+      Directory: /home/ubuntu/services/staging-fccb-server
+      Release tag: v0.10.13
+      Integrated viewer: v2.1.0b16
+      Start up: |
+        $ export BEARER_TOKENS=make_fccb_map
+        $ export SCICRUNCH_API_KEY=xBOrIfnZTvJQtobGo8XHRvThdMYGTxtf
+        $ poetry run mapviewer --bind 0.0.0.0:4333
+      Upgrading: *upgrade
+
 
   - Id: Production version 2
     Configuration:
