@@ -39,7 +39,7 @@ Servers:
       Tmux id: dev-flatmaps-v3
       Directory: /home/ubuntu/services/dev-flatmap-server-v3
       Release tag: v0.10.15
-      Integrated viewer: v2.2.0b11
+      Integrated viewer: v2.2.1a1
       Start up: |
         $ export BEARER_TOKENS=make_devel_map
         $ export SCICRUNCH_API_KEY=xBOrIfnZTvJQtobGo8XHRvThdMYGTxtf
@@ -74,9 +74,9 @@ Servers:
       Viewer: https://mapcore-demo.org/fccb/flatmap/viewer/
       Port: 4333
       Tmux id: fccb-flatmap-server
-      Directory: /home/ubuntu/services/staging-fccb-server
-      Release tag: v0.10.13
-      Integrated viewer: v2.1.0b16
+      Directory: /home/ubuntu/services/fccb-flatmap-server
+      Release tag: v0.11.3
+      Integrated viewer: v2.2.0b13
       Start up: |
         $ export BEARER_TOKENS=make_fccb_map
         $ export SCICRUNCH_API_KEY=xBOrIfnZTvJQtobGo8XHRvThdMYGTxtf
